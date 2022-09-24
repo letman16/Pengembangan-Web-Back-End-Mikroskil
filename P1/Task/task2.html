@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task 2 - Pehitungan BMI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        #btnSubmit,
+        #btnUlangi {
+            float: right;
+        }
+        
+        .result,
+        #btnUlangi {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-3">Task 2 - Pehitungan BMI</h1>
+        <form>
+            <div class="mb-3">
+                <label for="NBeratBadan" class="form-label">Berat Badan</label>
+                <input type="number" class="form-control" id="NBeratBadan" aria-describedby="nBDHelp">
+            </div>
+            <div class="mb-3">
+                <label for="NTinggiBadan" class="form-label">Tinggi Badan</label>
+                <input type="number" class="form-control" id="NTinggiBadan" aria-describedby="nTBHelp">
+            </div>
+
+            <button type="button" class="btn btn-primary" id="btnSubmit">Hitung</button>
+            <button type="button" class="btn btn-warning" id="btnUlangi" onclick="location.reload(true)">Ulangi</button>
+        </form>
+        <br>
+        <div class="result mt-4">
+            <div class="card">
+                <div class="card-header">
+                    Hasil Perhitungan
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <div class="row">
+                            <div class="col-7">
+                                <li class="list-group-item">Berat Badan: </li>
+                            </div>
+                            <div class="col-5">
+                                <li class="list-group-item"><span class="fst-italic" id="iBD"></span></li>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-7">
+                                <li class="list-group-item">Tinggi Badan: </li>
+                            </div>
+                            <div class="col-5">
+                                <li class="list-group-item"><span class="fst-italic" id="iTB"></span></li>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mt-3">
+                            <div class="text-center">
+                                BMI: <span class="fst-italic fw-bold" id="rNilaiBMI">
+                                    
+                                </span>
+                                <hr> Kategori: <span class="fw-bold" id="rKategoriBMI">
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                    </ul>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function() {
+        $("#btnSubmit").click(function() {
+
+            var kategoriBMI = ""
+            var nBD = $("#NBeratBadan").val()
+            var nTB = $("#NTinggiBadan").val()
+            if (nBD && nTB) {
+                var nilaiBMI = (nBD / Math.pow(nTB, 2))
+                if (nilaiBMI > 29) {
+                    kategoriBMI = "Obesitas"
+                } else if (nilaiBMI >= 24 && nilaiBMI < 29) {
+                    kategoriBMI = "Kelebihan Berat Badan (overweight)"
+                } else if (nilaiBMI >= 18.5 && nilaiBMI < 23.99) {
+                    kategoriBMI = "Normal"
+                } else if (nilaiBMI >= 15 && nilaiBMI < 18.99) {
+                    kategoriBMI = "Berat Badan Kurang (underweight)"
+                } else {
+                    kategoriBMI = "Berat Badan Sangat Kurang"
+                }
+                if (nilaiBMI && kategoriBMI) {
+                    var iBD = $("#iBD")
+                    var iTB = $("#iTB")
+
+                    iBD.text(nBD)
+                    iTB.text(nTB)
+
+                    var rNilaiBMI = $("#rNilaiBMI")
+                    var rKategoriBMI = $("#rKategoriBMI")
+
+                    rNilaiBMI.text(nilaiBMI)
+                    rKategoriBMI.text(kategoriBMI)
+
+                    $("#NBeratBadan, #NTinggiBadan").prop('disabled', true);
+                    $(".result, #btnUlangi").show()
+                    $("#btnSubmit").hide()
+                }
+            } else {
+                Swal.fire(
+                    'Gagal',
+                    'Semua data wajib diisi',
+                    'info'
+                )
+            }
+        })
+    });
+</script>
+
+</html>

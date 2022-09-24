@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+
+</head>
+
+<body>
+    <div class="container text-center mt-5">
+        <h1>Punny Web</h1>
+        <p>Website akan segera dapat diakses lengkap</p>
+        <p>Pada: 10/10/2021</p>
+        <p>Now: <span id="now"></span></p>
+
+        <br/>
+        <input type="email" class="form-control" placeholder="name@example.com" id="emailNotif">
+        <br>
+        <button class="btn btn-primary" id="btnGetNotif" type="button">Get Notification</button>
+
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        let tanggal_hari_ini = new Date(Date.now());
+        now = document.getElementById("now")
+        now.innerHTML = tanggal_hari_ini.toLocaleDateString()
+
+        var btnGetNotif = document.getElementById("btnGetNotif")
+
+        btnGetNotif.onclick = function() {
+            var emailNotif = document.getElementById("emailNotif").value
+            if (emailNotif) {
+                Swal.fire(
+                    'Sukses',
+                    "Kami akan memberikan notifikasi ke " + emailNotif + ". Terima Kasih",
+                    'success'
+                )
+            } else {
+                Swal.fire(
+                    'Gagal',
+                    'Email untuk Notifikasi wajib diisi',
+                    'info'
+                )
+            }
+        }
+    </script>
+
+</body>
+
+</html>

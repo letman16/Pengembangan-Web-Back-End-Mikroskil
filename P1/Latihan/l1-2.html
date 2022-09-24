@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan 1 - Object date</title>
+    <style>
+        .content{
+            text-align: center;
+            margin-top: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="content">
+        <p>Website akan segera dapat diakses lengkap</p>
+        <p>Pada: 10/10/2021</p>
+        <p>Now: <span id="now"></span></p>
+    </div>
+    <script>
+        let tanggal_hari_ini = new Date(Date.now());
+        now = document.getElementById("now")
+        now.innerHTML = tanggal_hari_ini.toLocaleDateString()
+    </script>
+
+</body>
+
+</html>
