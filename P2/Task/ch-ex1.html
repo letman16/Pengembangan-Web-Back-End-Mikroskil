@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exercise - Challange 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Punnny Web</h1>
+        <div class="card mt-5">
+            <div class="card-body">
+                <input id="inputText" class="mt-2 mb-4 form-control text-center border border-dark p-2 bg-light" autofocus="on" />
+                <p id="textInput" class="text-center">
+
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <p class="mt-2">Jumlah Karakter(Tanpa Inputan): <span id="jumlahKarakterTanpaInputan">-</span></p>
+                <p class="mt-2">Jumlah Karakter(Termasuk Inputan): <span id="jumlahKarakterTermasukInputan">-</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let inputText = $("#inputText")
+        let textInput = $("#textInput")
+        let jumlahKarakterTanpaInputan = $("#jumlahKarakterTanpaInputan")
+        let jumlahKarakterTermasukInputan = $("#jumlahKarakterTermasukInputan")
+
+        var arrInput = []
+
+        inputText.on('keypress', function(e) {
+            if (e.which == 13) {
+                if (inputText.val() == "") {
+                    alert("Anda belum memasukan input apapun")
+                } else {
+                    arrInput.push(inputText.val())
+                    inputText.val("")
+                    console.log(arrInput);
+                    textInput.append(arrInput[arrInput.length - 1], "</br>")
+                    jumlahKarakterTanpaInputan.html(arrInput.join().replaceAll(",", "").length);
+
+                }
+            }
+        });
+        inputText.on("keyup", function() {
+            x = arrInput.join().replaceAll(",", "").length + inputText.val().length
+
+            jumlahKarakterTermasukInputan.html(x)
+        })
+    </script>
+</body>
+
+</html>

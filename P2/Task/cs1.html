@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Case Study 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Punnny Web</h1>
+        <div class="card mt-5">
+            <div class="card-header text-center">
+                <span id="title" class="mt-2 fw-bold fs-5">
+
+                </span>
+            </div>
+            <div class="card-body">
+                <p id="data" class="text-center">
+
+                </p>
+            </div>
+            <div class="card-footer text-center">
+                <p class="mt-2">Jumlah Kalimat: <span id="jumlahKalimat"></span></p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let content = {
+            status: true,
+            title: "Memory",
+            data: "Memori adalah urutan byte yang berisi sepotong kecil informasi. Informasi ini mungkin menjadi perintah untuk mengatakan pada computar apa yang harus dilakukan. Sel mungkin berisi data yang diperlukan computar untuk melakukan suatu perintah. Setiap slot mungkin berisi salah satu, dan apa yang sekarang menjadi data mungkin saja kemudian menjadi perintah. Ukuran masing- masing sel, dan jumlah sel, berubah secara hebat dari computar ke computar, dan teknologi dalam pembuatan memori sudah berubah secara hebat - dari relay elektromekanik, ke tabung yang diisi dengan air raksa di mana pulsa akustik terbentuk, sampai matriks magnet permanen, ke setiap transistor, ke sirkuit terpadu dengan jutaan transistor di atas satu chip silikon."
+        }
+
+        let title = $("#title")
+        let data = $("#data")
+        let jumlahKalimat = $("#jumlahKalimat")
+
+        let titleContent = content.title
+        let dataContent = content.data.replaceAll("computar", "komputer")
+
+        title.html(titleContent)
+        data.html(dataContent)
+
+        let hitungJumlahKalimat = content.data.split(".").length - 1
+        jumlahKalimat.html(jumlahKalimat.html() + hitungJumlahKalimat)
+    </script>
+</body>
+
+</html>
